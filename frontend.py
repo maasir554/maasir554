@@ -1,4 +1,4 @@
-#importing the connector :-
+mporting the connector :-
 from distutils.util import execute
 import mysql.connector as c
 #defining the database :-
@@ -13,6 +13,51 @@ cursor.execute('CREATE TABLE IF NOT EXISTS delboy(delboy_id INT(4) PRIMARY KEY N
 cursor.execute('CREATE TABLE IF NOT EXISTS sellers(seller_id INT(4) PRIMARY KEY NOT NULL,name VARCHAR(30) NOT NULL,city VARCHAR(20),mobile VARCHAR(12),email VARCHAR(30),rating float(2,1))')
 cursor.execute('CREATE TABLE IF NOT EXISTS orders(order_id INT(4) PRIMARY KEY NOT NULL,item_id INT(4) NOT NULL,customer_id INT(4) NOT NULL,date_placed DATE,delboy_ID INT(4) NOT NULL)')
 cursor.execute('CREATE TABLE IF NOT EXISTS complains(complain_id INT(4) PRIMARY KEY NOT NULL,order_id INT(4) NOT NULL,subject VARCHAR(20) NOT NULL)')
+
+#MAKING THE MENU(USER INTERFACE) FOR FRONT END
+def menu():
+    print("--- menu opened ---")
+    a = int(input("to add data hit : 1 \nto delete data hit : 2 \nto exit this menu, hit 3 \nResponse : "))
+    if (a==1):
+        b= int(input("type number : \n'1' to add customer data \n'2' to add seller data \n'3' to add item data \n'4' to add order data \n'5' to add delboy data \n'6' to add complain. \nResponse : "))
+        if (b==1):
+            add_customer()
+        elif (b==2):
+            add_seller()
+        elif (b==3):
+            add_item()
+        elif (b==4):
+            add_order()
+        elif (b==5):
+            add_delboy()
+        elif (b==6):
+            add_complain()
+        else:
+            print('please enter a valid response')
+            
+    elif (a==2):
+        b= input("type number : \n'1' to delete customer data \n'2' to delete seller data \n'3' to delete item data \n'4' to delete order data \n'5' to delete delboy data \n'6' to delete complain \nResponse : ")
+        if (b==1):
+            delete_customer()
+        elif (b==2):
+            delete_seller()
+        elif (b==3):
+            delete_item()
+        elif (b==4):
+            delete_order()
+        elif (b==5):
+            delete_delboy()
+        elif (b==6):
+            delete_complain()
+        else:
+            print('please enter a valid response')
+            menu()
+    
+    elif(a==3):
+        print('Thank You! for using this program, Have a nice day! \n you can now exit or call functions manually. \nlistof the functions(prefix add_ OR delete_ before them) : customer\nseller\nitem\norder\ndelboy\ncomplain')
+    else:
+        print('please enter a valid response')
+        menu()
 
 #DEFINING FUNCTIONS FOR FEEDING DATA IN TEH TABLES OF THE SERVER
 
@@ -30,6 +75,13 @@ def add_customer():
     cursor.execute(statement,data)
     database.commit()
     print('data inserted to table customer successfully!')
+    b = input("do you want ot add more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. toa call back use menu())")
 
 def add_seller():
     print("add_seller() function started.")
@@ -38,12 +90,19 @@ def add_seller():
     city = input('enter seller city : ')
     mobile = input('enter seller mobile number : ')
     email = input('enter seller email ID : ')
-    rating = input('enter the rating of seller')
+    rating = input('enter the rating of seller : ')
     data = (s_id,name,city,mobile,email,rating)
     statement = "INSERT INTO sellers VALUES(%s,%s,%s,%s,%s,%s)"
     cursor.execute(statement,data)
     database.commit()
     print('data inserted to table sellers successfully!')
+    b = input("do you want ot add more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back use menu())")
 
 def add_item():
     print("add_item() function started.")
@@ -58,6 +117,13 @@ def add_item():
     cursor.execute(statement,data)
     database.commit()
     print('data inserted to table items successfully!')
+    b = input("do you want ot add more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back use menu())")
 
 def add_order():
     print("add_order() function started.")
@@ -71,6 +137,13 @@ def add_order():
     cursor.execute(statement,data)
     database.commit()
     print('data inserted to the table ORDERS successfully!')
+    b = input("do you want ot add more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back use menu())")
 
 def add_delboy():
     print("add_delboy() function started.")
@@ -85,6 +158,13 @@ def add_delboy():
     cursor.execute(statement,data)
     database.commit()
     print('data inserted to table delboy successfully!')
+    b = input("do you want ot add more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back use menu())")
 
 def add_complain():
     print("add_complain() function started.")
@@ -96,6 +176,13 @@ def add_complain():
     cursor.execute(statement,data)
     database.commit()
     print("data inserted to the table COMPLAINS successfully!")
+    b = input("do you want ot add more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. toa call back use menu())")
 
 #DEFINING FUNCTIONS TO DELETE DATA FROM TABLES OF DATABASE :-
 def delete_customer():
@@ -104,6 +191,13 @@ def delete_customer():
     cursor.execute('DELETE FROM customers WHERE customer_id=%s',(cid,))
     database.commit()
     print('deleted the customer data of customer_id : ',cid,'from table customers successfully!')
+    b = input("do you want ot delete more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back use menu())")
 
 def delete_seller():
     print("delete_seller() function started.")
@@ -111,6 +205,13 @@ def delete_seller():
     cursor.execute('DELETE FROM sellers WHERE seller_id=%s',(sid,))
     database.commit()
     print('deleted the seller data of seller_id : ',sid,' from table sellers successfully!')
+    b = input("do you want ot delete more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back, use menu())")
 
 def delete_item():
     print("delete_item() function started.")
@@ -118,6 +219,13 @@ def delete_item():
     cursor.execute('DELETE FROM items WHERE item_id=%s',(iid,))
     database.commit()
     print('deleted the item data of item_id : ',iid,' from table items successfully!')
+    b = input("do you want ot delete more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back, use menu())")
 
 def delete_order():
     print("delete_order() function started.")
@@ -125,6 +233,13 @@ def delete_order():
     cursor.execute('DELETE FROM orders WHERE order_id=%s',(x,))
     database.commit()
     print('deleted the item data of order_id : ',x,' from table orders successfully!')
+    b = input("do you want ot delete more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back, use menu())")
 
 def delete_delboy():
     print("delete_delboy() function started.")
@@ -132,6 +247,13 @@ def delete_delboy():
     cursor.execute('DELETE FROM delboy WHERE delboy_id=%s',(x,))
     database.commit()
     print('deleted the data of delboy_id ',x,' from table delboy successfully!')
+    b = input("do you want ot delete more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
+        menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back, use menu())")
 
 def delete_complain():
     print("delete_complain() function started.")
@@ -139,109 +261,14 @@ def delete_complain():
     cursor.execute('DELETE FROM complains WHERE complain_id=%s',(x,))
     database.commit()
     print('deleted the data of complain_id ',x,' from table complains successfully!')
-
-#MAKING THE MENU(USER INTERFACE) FOR FRONT END
-def menu():
-    a = input("to add data hit : 1 \nto delete data hit : 2 \nto exit this menu, hit 3")
-    if (a==1):
-        b= input("type number : \n'1' to add customer data \n'2' to add seller data \n'3' to add item data \n'4' to add order data \n'5' to add delboy data \n'6' to add complain")
-        if (b==1):
-            add_customer()
-            b1 = input('do you want to add more data in THIS table ? (y/n)')
-            if (b1=='y'):
-                add_customer()
-            else:
-                menu()
-        elif (b==2):
-            add_seller()
-            b2 = input('do you want to add more data in THIS table ? (y/n)')
-            if (b2=='y'):
-                add_seller()
-            else:
-                menu()
-        elif (b==3):
-            add_item()
-            b3 = input('do you want to add more data in THIS table ? (y/n)')
-            if (b3=='y'):
-                add_item()
-            else:
-                menu()
-        elif (b==4):
-            add_order()
-            b4 = input('do you want to add more data in THIS table ? (y/n)')
-            if (b4=='y'):
-                add_order()
-            else:
-                menu()
-        elif (b==5):
-            add_delboy()
-            b5 = input('do you want to add more data in THIS table ? (y/n)')
-            if (b5=='y'):
-                add_delboy()
-            else:
-                menu()
-        elif (b==6):
-            add_complain()
-            b6 = input('do you want to add more data in THIS table ? (y/n)')
-            if (b6=='y'):
-                add_complain()
-            else:
-                menu()
-        else:
-            print('please enter a valid response')
-            
-    elif (a==2):
-        b= input("type number : \n'1' to delete customer data \n'2' to delete seller data \n'3' to delete item data \n'4' to delete order data \n'5' to delete delboy data \n'6' to delete complain")
-        if (b==1):
-            delete_customer()
-            b1 = input('do you want to delete more data in THIS table ? (y/n)')
-            if (b1=='y'):
-                delete_customer()
-            else:
-                menu()
-        elif (b==2):
-            delete_seller()
-            b2 = input('do you want to delete more data in THIS table ? (y/n)')
-            if (b2=='y'):
-                delete_seller()
-            else:
-                menu()
-        elif (b==3):
-            delete_item()
-            b3 = input('do you want to delete more data in THIS table ? (y/n)')
-            if (b3=='y'):
-                delete_item()
-            else:
-                menu()
-        elif (b==4):
-            delete_order()
-            b4 = input('do you want to delete more data in THIS table ? (y/n)')
-            if (b4=='y'):
-                delete_order()
-            else:
-                menu()
-        elif (b==5):
-            delete_delboy()
-            b5 = input('do you want to delete more data in THIS table ? (y/n)')
-            if (b5=='y'):
-                delete_delboy()
-            else:
-                menu()
-        elif (b==6):
-            delete_complain()
-            b6 = input('do you want to delete more data in THIS table ? (y/n)')
-            if (b6=='y'):
-                delete_complain()
-            else:
-                menu()
-        else:
-            print('please enter a valid response')
-    
-    elif(a==3):
-        print('Thank You! for using this program, Have a nice day! \n you can now exit or call functions manually. \nlistof the functions(prefix add_ OR delete_ before them) : customer\nseller\nitem\norder\ndelboy\ncomplain')
-    else:
-        print('please enter a valid response')
+    b = input("do you want ot delete more data to THIS table? (y/n) : ")
+    if (b=='y'):
+        add_customer()
+    elif (b=='n'):
         menu()
+    else:
+        print("please enter a valid response. (you exited the menu. to call back, use menu())")
+
 #FINALLY, SERVING THE PROGRAM TO USER : -
 
 print("* * * * * * * WELCOME TO THE DATABASE MANAGEMENT USER INTERFACE OF ESHOP * * * * * * *") 
@@ -250,6 +277,8 @@ menu()
 """
 although this program have a menu, we can also call the functions defined here to 
 add or delete data when this program is running in the IDLE shell, manually (when you are outside menu i.e. exit the menu.)
+
+
 
 
 
