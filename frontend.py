@@ -17,7 +17,7 @@ cursor.execute('CREATE TABLE IF NOT EXISTS complains(complain_id INT(4) PRIMARY 
 #MAKING THE MENU(USER INTERFACE) FOR FRONT END
 def menu():
     print("--- menu opened ---")
-    a = int(input("to add data hit : 1 \nto delete data hit : 2 \nto exit this menu, hit 3 \nResponse : "))
+    a = int(input("to add data please type : 1 \nto delete data please type : 2 \nto exit this menu, please type 3 \nResponse : "))
     if (a==1):
         b= int(input("type number : \n'1' to add customer data \n'2' to add seller data \n'3' to add item data \n'4' to add order data \n'5' to add delboy data \n'6' to add complain. \nResponse : "))
         if (b==1):
@@ -36,7 +36,7 @@ def menu():
             print('please enter a valid response')
             
     elif (a==2):
-        b= input("type number : \n'1' to delete customer data \n'2' to delete seller data \n'3' to delete item data \n'4' to delete order data \n'5' to delete delboy data \n'6' to delete complain \nResponse : ")
+        b= int(input("type number : \n'1' to delete customer data \n'2' to delete seller data \n'3' to delete item data \n'4' to delete order data \n'5' to delete delboy data \n'6' to delete complain \nResponse : "))
         if (b==1):
             delete_customer()
         elif (b==2):
@@ -54,7 +54,7 @@ def menu():
             menu()
     
     elif(a==3):
-        print('Thank You! for using this program, Have a nice day! \n you can now exit or call functions manually. \nlistof the functions(prefix add_ OR delete_ before them) : customer\nseller\nitem\norder\ndelboy\ncomplain\n--- menu closed ---')
+        print('Thank You! for using this program, Have a nice day! \n you can now exit or call functions manually. \nlist of the functions(prefix add_ OR delete_ before them) : \ncustomer\nseller\nitem\norder\ndelboy\ncomplain\n--- menu closed ---')
     else:
         print('please enter a valid response')
         menu()
