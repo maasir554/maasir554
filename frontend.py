@@ -1,4 +1,4 @@
-mporting the connector :-
+#importing the connector :-
 from distutils.util import execute
 import mysql.connector as c
 #defining the database :-
