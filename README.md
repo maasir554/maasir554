@@ -1,10 +1,10 @@
-- 👋 Hi, I’m @maasir554
-- 👀 I’m interested in web development(UI) and Pyhon/Js programming + little AI.
-- 🌱 I’m currently learning HTML, CSS, JavaScript, and Python.
-- 💞️ I’m looking to collaborate on Front-End development and/or Python...
-- 📧 How to reach me: email: mohammadmaasir554@gmail.com or maasir554@gmail.com
-> *"Machine Intelligence is the last intelligence humanity will ever need to make." -Nick Bostrom*
-
+-  Hi, I’m @maasir554
+- I’m interested in full-stack development
+- I have experience in Next.js (frontend + backend), React, front-end state management, TypeScript, prisma ORM, tailwindcss, and similar tech.
+- DSA with c++ (and sometimes java)
+- ocassionally code on Python (Gold Badge in Hackerrank) 
+- How to reach me: email: maasir554@gmail.com
+- I look forward to develop AI applications that enables productivity.
 <!---
 maasir554/maasir554 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
